@@ -1,0 +1,26 @@
+{
+  "DateAction": "2023-04-12 14:56:77.997",
+  "SenderClient": {
+    "ClientUID": "10c215e4-44d2-44f6-930c-7c1818d30fb4",
+    "Surname": "Иванов",
+    "Name": "Иван",
+    "Patronymic": "Иванович",
+    "SenderDebitAccount": "18357e63-2343-41a2-bd89-4d3311d06c8c",
+    "BankName": "Крутой банк",
+    "Contacts": {
+      "Contact": [
+        "+7(999)999-99-99",
+        "abcd@abcd.abcd",
+        "@abcdabcd"
+      ]
+    }
+  },
+  "ReceiverClient": {
+    "ShortName": "Сидоров В.",
+    "ClientUID": "ff9a0798-7f77-4b6f-81c3-88f2720bab46"
+  },
+  "DebitAccount": {
+    "AccountUID": "786bb2e9-33f9-4860-9193-5246664f6115",
+    "Amount": "14555.00"
+  }
+}

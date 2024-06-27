@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: demo
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: /
+    username: guest
+    password: guest
+    host1:
+      host: localhost
+      port: 5672
+      virtual-host: host1
+      username: admin
+      password: 123456
+    host2:
+      host: localhost
+      port: 5672
+      virtual-host: host2
+      username: admin
+      password: 123456
+logging:
+  config: classpath:log4j2.yml
+

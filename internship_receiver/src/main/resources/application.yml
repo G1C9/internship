@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: demo2
+  rabbitmq:
+    host: localhost
+    port: 5672
+    virtual-host: /
+    username: guest
+    password: guest
+    host1:
+      host: localhost
+      port: 5672
+      virtual-host: host1
+      username: admin
+      password: 123456
+    host2:
+      host: localhost
+      port: 5672
+      virtual-host: host2
+      username: admin
+      password: 123456
+  jpa:
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+
+server:
+  port: 8081
+
+logging:
+  config: classpath:log4j2.yml
+

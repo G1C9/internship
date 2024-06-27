@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Doc>
+    <DateAction>2023-04-12 14:56:77.997</DateAction>
+    <SenderClient>
+        <ClientUID>10c215e4-44d2-44f6-930c-7c1818d30fb4</ClientUID>
+        <Surname>Иванов</Surname>
+        <Name>Иван</Name>
+        <Patronymic>Иванович</Patronymic>
+        <SenderDebitAccount>18357e63-2343-41a2-bd89-4d3311d06c8c</SenderDebitAccount>
+        <BankName>Крутой банк</BankName>
+        <Contacts>
+            <Contact>
+                +7(999)999-99-99
+            </Contact>
+            <Contact>
+                abcd@abcd.abcd
+            </Contact>
+            <Contact>
+                @abcdabcd
+            </Contact>
+        </Contacts>
+    </SenderClient>
+    <ReceiverClient>
+        <ShortName>Сидоров В.</ShortName>
+        <ClientUID>ff9a0798-7f77-4b6f-81c3-88f2720bab46</ClientUID>
+    </ReceiverClient>
+    <DebitAccount>
+        <AccountUID>786bb2e9-33f9-4860-9193-5246664f6115</AccountUID>
+        <Amount>14555.00</Amount>
+    </DebitAccount>
+</Doc>
