@@ -23,6 +23,9 @@ data class OperationsInfo(
     var dateAction: String? = null,
 
     @Column
+    var transactionUID: String? = null,
+
+    @Column
     var sum: Double? = null,
 
     @OneToOne

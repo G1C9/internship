@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface OperationsInfoRepo: JpaRepository<OperationsInfo, Long> {
 
-    fun existsByDateActionAndSumAndDebitAccountId(dateAction: String, sum: Double?, debitAccountUID: DebitAccount?) : Boolean
+    fun existsByTransactionUID(transactionUID: String) : Boolean
 
 }

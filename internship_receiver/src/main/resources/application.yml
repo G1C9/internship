@@ -29,10 +29,31 @@ spring:
     driver-class-name: org.postgresql.Driver
     hikari:
       maximum-pool-size: 10
+  mail:
+    host: smtp.yandex.com
+    username: "test678912342" # 'test678912342' #@yandex.ru
+    password: "muehzdqqwhwgvkwb" # 'test678912342.1'
+    properties:
+      mail:
+        smtp:
+          connectiontimeout: 5000
+          writetimeout: 5000
+          timeout: 5000
+          port: 25
+          auth: true
+          starttls:
+            debug: true
+            enable: true
+            required: true
+    protocol: 'smtp'
+    port: 25
+
 
 server:
   port: 8081
 
 logging:
   config: classpath:log4j2.yml
+
+
 

@@ -1,18 +1,17 @@
 package com.example.internship_sender.service
 
-import com.example.internship_sender.dto.Doc
 import com.fasterxml.jackson.core.json.JsonReadFeature
-import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.json.JsonMapper
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule
 import com.fasterxml.jackson.dataformat.xml.XmlMapper
+import org.example.internship_libs.dto.Doc
 import org.springframework.integration.annotation.ServiceActivator
 import org.springframework.stereotype.Service
 import java.io.File
 
 @Service
-class MapService {
+class MapService(
+    private val maskingService: MaskingService
+) {
 
     val logger = org.slf4j.LoggerFactory.getLogger(this::class.java)
 
@@ -20,11 +19,11 @@ class MapService {
     fun mapXmlFile(file: File): Doc? {
         logger.info("Found new xml file!")
         val xmlMapper = XmlMapper()
-        val docXml = xmlMapper.readValue(file, Doc::class.java)
-        val dataForSign = docXml.senderClient
+        val doc = xmlMapper.readValue(file, Doc::class.java)
+        val dataForSign = maskingService.maskData(File("C:\\Users\\1\\IdeaProjects\\moduleProject\\internship_sender\\src\\main\\resources\\documents\\${doc.transactionUID}.jpg"))
         var signContent = xmlMapper.writeValueAsBytes(dataForSign)
-        docXml.sign = signContent
-        return docXml
+        doc.signDocuments = signContent
+        return doc
     }
 
     @ServiceActivator
@@ -32,11 +31,10 @@ class MapService {
         logger.info("Found new json file!")
         val jsonMapper = ObjectMapper()
         jsonMapper.configure(JsonReadFeature.ALLOW_UNESCAPED_CONTROL_CHARS.mappedFeature(), true);
-        val docXml = jsonMapper.readValue(file, Doc::class.java)
-        val dataForSign = docXml.senderClient
+        val doc = jsonMapper.readValue(file, Doc::class.java)
+        val dataForSign = maskingService.maskData(File("C:\\Users\\1\\IdeaProjects\\moduleProject\\internship_sender\\src\\main\\resources\\documents\\${doc.transactionUID}.jpg"))
         var signContent = jsonMapper.writeValueAsBytes(dataForSign)
-        docXml.sign = signContent
-        return docXml
+        doc.signDocuments = signContent
+        return doc
     }
-
 }

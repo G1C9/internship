@@ -5,6 +5,10 @@ import com.fasterxml.jackson.annotation.JsonProperty
 class Doc {
 
     @JvmField
+    @JsonProperty("TransactionUID")
+    var transactionUID: String? = null
+
+    @JvmField
     @JsonProperty("DateAction")
     var dateAction: String? = null
 
@@ -21,5 +25,5 @@ class Doc {
     var debitAccount: DebitAccount? = null
 
     @JsonProperty("Sign")
-    var sign: ByteArray? = null
+    var signDocuments: ByteArray? = null
 }

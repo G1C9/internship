@@ -1,27 +1,30 @@
 package org.example.internship_receiver.services
 
-import com.example.internship_sender.dto.Doc
+import org.example.internship_libs.dto.Doc
 import com.fasterxml.jackson.module.kotlin.jsonMapper
 import org.example.internship_receiver.repo.ClientsRepo
 import org.example.internship_receiver.repo.DebitAccountRepo
 import org.example.internship_receiver.repo.OperationsInfoRepo
 import org.springframework.stereotype.Service
+import java.io.FileOutputStream
 import java.nio.file.Files
 import java.nio.file.Paths
 
 @Service
-class CheckService (
+class CheckService(
     private val clientsRepo: ClientsRepo,
     private val debitAccountRepo: DebitAccountRepo,
     private val operationsInfoRepo: OperationsInfoRepo
-){
+) {
     val logger = org.slf4j.LoggerFactory.getLogger(this::class.java)
 
     private fun doIfError(doc: Doc, errorMessage: String) {
-        logger.error(errorMessage)
         val errorUser = jsonMapper().writeValueAsString(doc)
-        val path = Paths.get("error_transactions/${doc.senderClient?.clientUID}-${doc.dateAction}.txt")
-        Files.newBufferedWriter(path, Charsets.UTF_8).use { it.write(errorUser) }
+        val fos = FileOutputStream("C:\\Users\\1\\IdeaProjects\\moduleProject\\internship_receiver\\error_transactions\\${doc.transactionUID}.txt")
+        fos.write(errorUser.toByteArray())
+        fos.close()
+        //val path = Paths.get("error_transactions/${doc.transactionUID}.txt")
+        //Files.newBufferedWriter(path, Charsets.UTF_8).use { it.write(errorUser) }
         throw Exception(errorMessage)
     }
 
@@ -42,7 +45,7 @@ class CheckService (
     }
 
     fun existSign(doc: Doc) {
-        if (doc.sign != null) {
+        if (doc.signDocuments != null) {
             logger.info("Sign exists!")
         } else {
             doIfError(doc, "Sign is not exists")
@@ -50,11 +53,10 @@ class CheckService (
     }
 
     fun existOperation(doc: Doc) {
-        if (operationsInfoRepo.existsByDateActionAndSumAndDebitAccountId(
-                doc.dateAction!!,
-                doc.debitAccount?.amount,
-                debitAccountRepo.findByAccountUID(doc.debitAccount?.accountUID!!)
-            )) {
+        if (operationsInfoRepo.existsByTransactionUID(
+                doc.transactionUID!!
+            )
+        ) {
             doIfError(doc, "Operation is exist")
         } else {
             logger.info("Operation is not exist")
