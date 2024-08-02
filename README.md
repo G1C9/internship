@@ -5,9 +5,13 @@
 Технологии:
 
 Spring Boot
+
 Kotlin
+
 Maven
+
 RabbitMQ
+
 CryptoPro
 JPA
 PostgreSQL
