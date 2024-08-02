@@ -13,7 +13,11 @@ Maven
 RabbitMQ
 
 CryptoPro
+
 JPA
+
 PostgreSQL
+
 JavaMailSender
+
 log4j2
